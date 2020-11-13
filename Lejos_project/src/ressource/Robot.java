@@ -5,6 +5,8 @@ package ressource;
 import lejos.hardware.Button;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.Color;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
@@ -21,15 +23,16 @@ import lejos.robotics.navigation.MovePilot;
 public class Robot {
 
 	//private HashMap<String, Color> mapCouleurCourante; // C'est la map des couleurs qu'on initialise au début du
-														// fonctionnement du robot
+	// fonctionnement du robot
 	private String[][] tableauCouleurInitial = new String [7][5] ;
- ;
+	;
 
 	private String[] tableauCorrespondanceColorInt = { "Rouge", "Bleu", "Vert", "Orange", "Blanc" };
 
 	private NXTRegulatedMotor roueGauche;
 	private NXTRegulatedMotor roueDroite;
 
+	private EV3ColorSensor capteurCouleur;
 	/**
 	 * Constructeur du robot
 	 * 
@@ -38,6 +41,7 @@ public class Robot {
 		System.out.println("yo");
 		this.roueGauche = Motor.B; // moteur B = roue de gauche
 		this.roueDroite = Motor.C; // moteur B = roue de droite
+		this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
 
 		initMapColorInitial();
 		//initColor();
@@ -61,56 +65,94 @@ public class Robot {
 	 * avec l'incrementeur en l'incorporant à la position
 	 */
 	public void initMapColorInitial() {
-		
+
 		int[] tabString = { 0, 2, 1, 1, 1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 1, 1, 2, 4, 2, 1, 1, 3, 1, 2, 1, 1, 3, 2, 2, 0, 1,
 				1, 1, 1, 1 };
 		int incrementeur = 0;
 		//tableauCouleurInitial[0][0] = tableauCorrespondanceColorInt[tabString[incrementeur]];
-		
+
 		for (int i = 0; i <= 6; i++) {
 			for (int j = 0; j <= 4; j++) {
 				try {
-				tableauCouleurInitial[i][j] = tableauCorrespondanceColorInt[tabString[incrementeur++]];
-				System.out.println(incrementeur);
-			}catch (Exception e) {
-				System.out.println(e);
-			}
+					tableauCouleurInitial[i][j] = tableauCorrespondanceColorInt[tabString[incrementeur++]];
+					System.out.println(incrementeur);
+				}catch (Exception e) {
+					System.out.println(e);
+				}
 			}
 		}
-		System.out.println(incrementeur);
 
 	}
+
+
 
 	/**
 	 * Methode qui fait avancer d'une case le robot
 	 */
 	public void avanceUneCase() {
-			Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(-60);
-			Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(60);
-			Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, 2);
+		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(-60);
+		Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(60);
+		Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, 2);
 
-			MovePilot pilot = new MovePilot(chassis);
+		MovePilot pilot = new MovePilot(chassis);
 
-			float[] angle = new float[] { 0.0f };
+		float[] angle = new float[] { 0.0f };
 
-			pilot.setLinearSpeed(30.);
-			pilot.setLinearSpeed(30.); // unit per second
-			pilot.travel(110);
+		pilot.setLinearSpeed(60.);
+		pilot.setLinearSpeed(60.); // unit per second
+		pilot.travel(120);
 
-		}
+	}
+	
 	
 
 	public void tournerRobotAngleDroit() {
-		/*
-		 * pilot.setAngularSpeed(30.); gyro.getAngleMode(); float[] tabAngle = new
-		 * float[4]; float threshold = 90.f;
-		 * 
-		 * for (int i = 0; i < 4; i++) { pilot.travel(20); while (pilot.isMoving())
-		 * Thread.yield(); Motor.C.forward(); while (Math.abs(angle[0]) < threshold) {
-		 * Delay.msDelay(500); angleProvider.fetchSample(angle, 0); }
-		 * Motor.C.stop(true); threshold += 90.f; } }
-		 */
+		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(-60);
+		Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(60);
+		Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, 2);
+
+		MovePilot pilot = new MovePilot(chassis);
+		pilot.setLinearSpeed(30.);
+		pilot.setLinearSpeed(30.); 
+			while (pilot.isMoving()) Thread.yield();
+			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
+			pilot.rotate(100);
+			while (pilot.isMoving())Thread.yield();
+			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
+		
 	}
+	
+	
+	public String stringColor() {
+		//float[] tab = new float[3];
+		//sp.fetchSample(tab, 0); // RBG en float
+		int clr = this.capteurCouleur.getColorID();
+		return getCouleur(clr);
+	}
+
+	private static String getCouleur(int c) {
+		switch (c) {
+		case Color.BLUE:
+			return "Bleu";
+		case Color.GREEN:
+			return "Vert";
+		case Color.RED:
+			return "Rouge";
+		case Color.WHITE:
+			return "Blanc";
+		case Color.ORANGE:
+			return "Orange";
+		default :
+			return "Unknown";
+		}
+	}
+	public boolean isSameColor(String colorCase, String colorReturn) {
+		System.out.println(colorCase == colorReturn);
+		return colorCase == colorReturn;
+		
+	}
+
+
 
 	/**
 	 * Getteur de la roue droite
