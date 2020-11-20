@@ -20,6 +20,12 @@ public class Deplacement {
 	 * @Modification Xavier Jacob--Guizon
 	 */
 	public void rechercheChemin() {
+		try {
+			System.out.println(this.robot.getCaseCourante());
+			System.out.println(this.robot.getCaseGoal());
+		}catch(Exception e) {
+			//System.out.println(e);
+		}
 		Position posCourante = this.robot.getCaseCourante();
 		Position goal = this.robot.getCaseGoal();
 		// On recherche le chemin en x (en largeur)
