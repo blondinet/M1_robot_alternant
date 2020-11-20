@@ -27,8 +27,8 @@ public class Position {
 	 * Setter de la position X
 	 * @param int px
 	 */
-	public int setPosX(int px) {
-		return this.posX=px;
+	public void setPosX(int px) {
+		this.posX=px;
 	}
 	
 	/**
@@ -43,8 +43,8 @@ public class Position {
 	 * Setter de la position Y
 	 * @param int py
 	 */
-	public int setPosY(int py) {
-		return this.posY=py;
+	public void setPosY(int py) {
+		this.posY=py;
 	}
 	
 	/**

@@ -45,8 +45,7 @@ public class Deplacement {
 		}
 		
 		for(Position val : this.listPosCheminGoal) {
-			System.out.print(val+" : -> :");
-			
+			System.out.print(val);
 		}
 	}
 	
