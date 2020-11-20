@@ -1,5 +1,6 @@
 package main;
 
+import comportement.Deplacement;
 import lejos.hardware.Button;
 import ressource.Robot;
 
@@ -12,11 +13,12 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		rechercheChemin();
 		
 		while (!Button.DOWN.isDown()) {
 			Robot r2d2 = new Robot ();
-			for(int i =0;i<7;i++) {
+			Deplacement cerveau = new Deplacement(r2d2);
+			cerveau.rechercheChemin();
+			/*for(int i =0;i<7;i++) {
 				r2d2.avanceUneCase();
 				r2d2.stringColor();
 				
@@ -27,7 +29,7 @@ public class Main {
 					
 
 				}
-			}
+			}*/
 			/*r2d2.tournerRobotAngleDroit();
 			for(int i =0;i<5;i++) {
 				r2d2.avanceUneCase();
