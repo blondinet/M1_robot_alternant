@@ -75,7 +75,7 @@ public class Robot {
 			for (int j = 0; j <= 4; j++) {
 				try {
 					tableauCouleurInitial[i][j] = tableauCorrespondanceColorInt[tabString[incrementeur++]];
-					System.out.println(incrementeur);
+					//System.out.println(incrementeur);
 				}catch (Exception e) {
 					System.out.println(e);
 				}
@@ -98,8 +98,8 @@ public class Robot {
 
 		float[] angle = new float[] { 0.0f };
 
-		pilot.setLinearSpeed(60.);
-		pilot.setLinearSpeed(60.); // unit per second
+		pilot.setLinearSpeed(30.);
+		pilot.setLinearSpeed(30.); // unit per second
 		pilot.travel(120);
 
 	}
@@ -116,7 +116,7 @@ public class Robot {
 		pilot.setLinearSpeed(30.); 
 			while (pilot.isMoving()) Thread.yield();
 			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
-			pilot.rotate(100);
+			pilot.rotate(90);
 			while (pilot.isMoving())Thread.yield();
 			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 		
@@ -130,9 +130,10 @@ public class Robot {
 		return getCouleur(clr);
 	}
 
-	private static String getCouleur(int c) {
+	public static String getCouleur(int c) {
 		switch (c) {
 		case Color.BLUE:
+			
 			return "Bleu";
 		case Color.GREEN:
 			return "Vert";
@@ -147,7 +148,6 @@ public class Robot {
 		}
 	}
 	public boolean isSameColor(String colorCase, String colorReturn) {
-		System.out.println(colorCase == colorReturn);
 		return colorCase == colorReturn;
 		
 	}
