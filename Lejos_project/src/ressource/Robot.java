@@ -205,7 +205,7 @@ public class Robot {
 	* 
 	* @Modification Xavier Jacob--Guizon
 	*/
-	function Position getCaseCourante(){
+	public Position getCaseCourante(){
 		return posCourante;
 	}
 
@@ -214,7 +214,7 @@ public class Robot {
 	* 
 	* @Modification Xavier Jacob--Guizon
 	*/
-	function Position getCaseGoal(){
+	public Position getCaseGoal(){
 		return posGoal;
 	}
 }
