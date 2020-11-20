@@ -1,10 +1,14 @@
 package ressource;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
+import lejos.hardware.port.SensorPort;
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.Color;
+import lejos.robotics.SampleProvider;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
 import lejos.robotics.chassis.WheeledChassis;
@@ -25,6 +29,9 @@ public class Robot {
 	
 	private NXTRegulatedMotor roueGauche;
 	private NXTRegulatedMotor roueDroite;
+	EV3ColorSensor capteurCouleur;
+
+	//SampleProvider sp; pour le rgb
 	
 	/**
 	 * Constructeur du robot
@@ -36,6 +43,9 @@ public class Robot {
 		
 		initMapColorInitial();
 		initColor();
+		// ouvrir tous les capteurs ?
+		this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
+		//this.sp = capteurCouleur.getRGBMode();  pour le rgb
 	}
 
 	/**
@@ -85,8 +95,6 @@ public class Robot {
 		float[] angle = new float[] { 0.0f };
 		pilot.setLinearSpeed(30.);
 	    pilot.setLinearSpeed(30.); // unit per second
-    
-	    
 	}
 	
 	public void tournerRobotAngleDroit() {
@@ -109,6 +117,47 @@ public class Robot {
                 threshold += 90.f;
         	}
 		}*/
+	}
+	
+	
+	public String stringColor() {
+		//float[] tab = new float[3]; 
+		//sp.fetchSample(tab, 0); // RBG en float		
+		int clr = this.capteurCouleur.getColorID();
+		return getCouleur(clr);
+	}
+
+	private static String getCouleur(int c) {
+		switch (c) {
+			case Color.BLUE: 
+				return "Bleu";
+			case Color.GREEN: 
+				return "Vert";
+			case Color.RED: 
+				return "Rouge";
+			case Color.WHITE: 
+				return "Blanc";
+			case Color.ORANGE: 
+				return "Orange";
+			default : 
+				return "Unknown";
+		}  
+	}
+	
+	public boolean isSameColor(String colorCase, String colorReturn) {
+		return colorCase == colorReturn;
+	}
+	
+	/**
+	 * Méthode pour obtenir une couleur aléatoire pour commencer le déplacement des robots
+	 * @return la couleur
+	 */
+	public String randomColorByRobot() {
+	    Random rand = new Random();
+	    int randomIndex = rand.nextInt(tableauCorrespondanceColorInt.length);
+        String randomElement = tableauCorrespondanceColorInt[randomIndex];
+        //System.out.println(randomElement);
+		return randomElement;
 	}
 	
 	/**

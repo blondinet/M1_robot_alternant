@@ -1,5 +1,7 @@
 package main;
 
+import ressource.Robot;
+
 public class Main {
 
 	/**
@@ -9,7 +11,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		/*Robot r = new Robot();
+		r.randomColorByRobot();*/
 
 	}
 
