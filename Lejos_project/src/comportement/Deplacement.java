@@ -1,10 +1,12 @@
 package comportement;
 
+import java.util.ArrayList;
+
 import ressource.*;
 
 public class Deplacement {
 
-	private Position[] listPosCheminGoal;
+	private ArrayList<Position> listPosCheminGoal;
 	private Robot robot;
 	
 	/**
@@ -20,31 +22,25 @@ public class Deplacement {
 	 * @Modification Xavier Jacob--Guizon
 	 */
 	public void rechercheChemin() {
-		try {
-			System.out.println(this.robot.getCaseCourante());
-			System.out.println(this.robot.getCaseGoal());
-		}catch(Exception e) {
-			//System.out.println(e);
-		}
 		Position posCourante = this.robot.getCaseCourante();
 		Position goal = this.robot.getCaseGoal();
 		// On recherche le chemin en x (en largeur)
 		while(posCourante.getPosX() > goal.getPosX()) {
-			this.listPosCheminGoal[this.listPosCheminGoal.length+1]=posCourante;
+			this.listPosCheminGoal.add(posCourante);
 			posCourante.setPosX(posCourante.getPosX()-1);
 		}
 		while(posCourante.getPosX() < goal.getPosX()) {
-			this.listPosCheminGoal[this.listPosCheminGoal.length+1]=posCourante;
+			this.listPosCheminGoal.add(posCourante);
 			posCourante.setPosX(posCourante.getPosX()+1);
 		}
 		
 		// On recherche le chemin en y (en longeur)
 		while(posCourante.getPosY() > goal.getPosY()) {
-			this.listPosCheminGoal[this.listPosCheminGoal.length+1]=posCourante;
+			this.listPosCheminGoal.add(posCourante);
 			posCourante.setPosY(posCourante.getPosY()-1);
 		}
 		while(posCourante.getPosY() < goal.getPosY()) {
-			this.listPosCheminGoal[this.listPosCheminGoal.length+1]=posCourante;
+			this.listPosCheminGoal.add(posCourante);
 			posCourante.setPosY(posCourante.getPosY()+1);
 		}
 		
@@ -52,6 +48,7 @@ public class Deplacement {
 			System.out.println(val);
 		}
 	}
+	
 	
 	
 	/**
