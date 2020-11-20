@@ -20,6 +20,7 @@ public class Main {
 		while (!Button.DOWN.isDown()) {
 			Robot r2d2 = new Robot ();
 			Deplacement cerveau = new Deplacement(r2d2);
+			System.out.println("testeuuuur");
 			cerveau.rechercheChemin();
 			/*for(int i =0;i<7;i++) {
 				r2d2.avanceUneCase();
