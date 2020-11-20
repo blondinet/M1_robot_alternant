@@ -12,6 +12,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		rechercheChemin();
+		
 		while (!Button.DOWN.isDown()) {
 			Robot r2d2 = new Robot ();
 			for(int i =0;i<7;i++) {

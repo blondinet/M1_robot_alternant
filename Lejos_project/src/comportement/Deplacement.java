@@ -19,7 +19,7 @@ public class Deplacement {
 	 * Fonction qui cherche le chemin et le stock dans listPosCheminGoal
 	 * @Modification Xavier Jacob--Guizon
 	 */
-	/*public void rechercheChemin() {
+	public void rechercheChemin() {
 		Position posCourante = this.robot.getCaseCourante();
 		Position goal = this.robot.getCaseGoal();
 		// On recherche le chemin en x (en largeur)
