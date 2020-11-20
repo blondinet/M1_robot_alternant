@@ -13,7 +13,10 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		System.out.println("Appuyez BAS pour lancer");
+		while (!Button.DOWN.isDown()) {
+			
+		}
 		while (!Button.DOWN.isDown()) {
 			Robot r2d2 = new Robot ();
 			Deplacement cerveau = new Deplacement(r2d2);
