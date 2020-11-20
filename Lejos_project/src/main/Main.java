@@ -17,11 +17,12 @@ public class Main {
 		while (!Button.DOWN.isDown()) {
 			
 		}
-		while (!Button.DOWN.isDown()) {
-			Robot r2d2 = new Robot ();
-			Deplacement cerveau = new Deplacement(r2d2);
-			System.out.println("testeuuuur");
-			cerveau.rechercheChemin();
+		Robot r2d2 = new Robot ();
+		Deplacement cerveau = new Deplacement(r2d2);
+		System.out.println("testeuuuur");
+		cerveau.rechercheChemin();
+		
+		/*while (!Button.DOWN.isDown()) {	
 			/*for(int i =0;i<7;i++) {
 				r2d2.avanceUneCase();
 				r2d2.stringColor();
@@ -39,7 +40,7 @@ public class Main {
 				r2d2.avanceUneCase();
 
 			}*/
-		}
+		/*}*/
 	}
 
 }
