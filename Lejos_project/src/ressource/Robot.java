@@ -33,6 +33,10 @@ public class Robot {
 	private NXTRegulatedMotor roueDroite;
 
 	private EV3ColorSensor capteurCouleur;
+	private Position posCourante = new Position(0, 0);
+	private Position posGoal = new Position(4, 5);
+
+	
 	/**
 	 * Constructeur du robot
 	 * 
@@ -66,8 +70,14 @@ public class Robot {
 	 */
 	public void initMapColorInitial() {
 
-		int[] tabString = { 0, 2, 1, 1, 1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 1, 1, 2, 4, 2, 1, 1, 3, 1, 2, 1, 1, 3, 2, 2, 0, 1,
-				1, 1, 1, 1 };
+		int[] tabString = { 0, 2, 1, 1, 1,
+				1, 2, 2, 2, 1, 
+				1, 2, 3, 3, 1, 
+				1, 2, 4, 2, 1, 
+				1, 3, 1, 2, 1, 
+				1, 3, 2, 2, 0, 
+				1, 1, 1, 1, 1 
+				};
 		int incrementeur = 0;
 		//tableauCouleurInitial[0][0] = tableauCorrespondanceColorInt[tabString[incrementeur]];
 
@@ -132,19 +142,19 @@ public class Robot {
 
 	public static String getCouleur(int c) {
 		switch (c) {
-		case Color.BLUE:
-			
-			return "Bleu";
-		case Color.GREEN:
-			return "Vert";
-		case Color.RED:
-			return "Rouge";
-		case Color.WHITE:
-			return "Blanc";
-		case Color.ORANGE:
-			return "Orange";
-		default :
-			return "Unknown";
+			case Color.BLUE:
+				
+				return "Bleu";
+			case Color.GREEN:
+				return "Vert";
+			case Color.RED:
+				return "Rouge";
+			case Color.WHITE:
+				return "Blanc";
+			case Color.ORANGE:
+				return "Orange";
+			default :
+				return "Unknown";
 		}
 	}
 	public boolean isSameColor(String colorCase, String colorReturn) {
@@ -188,5 +198,23 @@ public class Robot {
 	 */
 	public void setRoueGauche(NXTRegulatedMotor roueDroite) {
 		this.roueGauche = roueGauche;
+	}
+	
+	/**
+	* Fonction qui renvoie la case courante du robot
+	* 
+	* @Modification Xavier Jacob--Guizon
+	*/
+	function Position getCaseCourante(){
+		return posCourante;
+	}
+
+	/**
+	* Fonction qui renvoie la case Objectif du robot
+	* 
+	* @Modification Xavier Jacob--Guizon
+	*/
+	function Position getCaseGoal(){
+		return posGoal;
 	}
 }

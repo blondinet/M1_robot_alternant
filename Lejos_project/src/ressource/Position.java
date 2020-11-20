@@ -32,6 +32,14 @@ public class Position {
 	}
 	
 	/**
+	 * Getteur de la position Y
+	 * @return int
+	 */
+	public int getPosY() {
+		return this.posX;
+	}
+	
+	/**
 	 * Setter de la position Y
 	 * @param int py
 	 */
