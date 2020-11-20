@@ -6,7 +6,7 @@ import ressource.*;
 
 public class Deplacement {
 
-	private ArrayList<Position> listPosCheminGoal;
+	private ArrayList<Position> listPosCheminGoal = new ArrayList<Position>();
 	private Robot robot;
 	
 	/**
