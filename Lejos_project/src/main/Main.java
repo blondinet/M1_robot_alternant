@@ -21,7 +21,7 @@ public class Main {
 		Deplacement cerveau = new Deplacement(r2d2);
 		System.out.println("testeuuuur");
 		cerveau.rechercheChemin();
-		
+		while (!Button.DOWN.isDown()) {	}
 		/*while (!Button.DOWN.isDown()) {	
 			/*for(int i =0;i<7;i++) {
 				r2d2.avanceUneCase();
