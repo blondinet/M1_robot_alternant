@@ -26,38 +26,38 @@ public class Main {
 		ArrayList list = cerveau.rechercheChemin();
 		cerveau.deplacementList(list);
 		
-		//while (!Button.DOWN.isDown()) {	}
+		while (!Button.DOWN.isDown()) {	}
 		while (!Button.DOWN.isDown()) {	
 			for(int i =0;i<2;i++) {
 				r2d2.avanceUneCase();
 				r2d2.stringColor();
 				
-				/*for(int j=0; j<5;j++) {
+				for(int j=0; j<5;j++) {
 					if(r2d2.isSameColor(Robot.getCouleur(j),r2d2.stringColor())) {
 						System.out.println(Robot.getCouleur(j));
 					}
 					
 
-				}*/
+				}
 				
 			}
 			r2d2.tournerRobotAngleDroit("gauche");
 			
-			/*r2d2.tournerRobotAngleDroit("gauche");
+			r2d2.tournerRobotAngleDroit("gauche");
 			for(int i =0;i<5;i++) {
 				r2d2.avanceUneCase();
- 			4e1a921ca35214be579a27e91ef4957081b15a12
 
-			}*/
+			}
 		}
 		
 		// TEST BLUETOOTH
-		try {
+		/*try {
 			Bluetooth.connectBt();
 			Bluetooth.waitBt();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 		
 	}
 
