@@ -36,7 +36,7 @@ public class Position {
 	 * @return int
 	 */
 	public int getPosY() {
-		return this.posX;
+		return this.posY;
 	}
 	
 	/**
