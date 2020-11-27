@@ -23,7 +23,7 @@ public class Deplacement {
 	 * @return ArrayList le chemin 
 	 */
 	public ArrayList rechercheChemin() {
-		Position posCourante = this.robot.getCaseCourante();
+		Position posCourante = new Position(this.robot.getCaseCourante().getPosX(),this.robot.getCaseCourante().getPosY());
 		Position goal = this.robot.getCaseGoal();
 		// On recherche le chemin en x (en largeur)
 		while(posCourante.getPosX() > goal.getPosX()) {
@@ -72,19 +72,74 @@ public class Deplacement {
 	 * @Modification Xavier Jacob--Guizon
 	 */
 	public void deplacementList(ArrayList<Position> list) {
+		
 		for(Position pos : list) {
-			if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
+			if(!this.robot.getCaseCourante().estCase(pos)) {
+				if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
+					//tourner le robot pour la bonne position
+					while(this.robot.getDirection()!=this.robot.DROITE) {
+						this.tournerDir(this.robot.DROITE);
+					}
+					this.robot.avanceUneCase();
+					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosX()+1);
+				}else if(this.robot.getCaseCourante().getPosX() > pos.getPosX()) {
+					while(this.robot.getDirection()!=this.robot.GAUCHE) {
+						this.tournerDir(this.robot.GAUCHE);
+					}
+					this.robot.avanceUneCase();
+					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosX()-1);
+				}
 				
-			}else if(this.robot.getCaseCourante().getPosX() > pos.getPosX()) {
-				
-			}
-			
-			if(this.robot.getCaseCourante().getPosY() < pos.getPosY()) {
-				
-			}else if(this.robot.getCaseCourante().getPosY() > pos.getPosY()) {
+				if(this.robot.getCaseCourante().getPosY() < pos.getPosY()) {
+					while(this.robot.getDirection()!=this.robot.HAUT) {
+						this.tournerDir(this.robot.HAUT);
+					}
+					this.robot.avanceUneCase();
+					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosY()-1);
+				}else if(this.robot.getCaseCourante().getPosY() > pos.getPosY()) {
+					while(this.robot.getDirection()!=this.robot.BAS) {
+						this.tournerDir(this.robot.BAS);
+					}
+					this.robot.avanceUneCase();
+					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosY()+1);
+				}
 				
 			}
 		}
+	}
+	
+	/**
+	 * méthode qui fait tourner le robot jusqu'a ce qu'il soit dans la bonne direction
+	 */
+	public void tournerDir(int dir) {
+		int directionRobot = this.robot.getDirection();
+		
+		int[] listDir ={this.robot.HAUT, this.robot.DROITE, this.robot.BAS, this.robot.GAUCHE};
+		for(int i =0;i<=listDir.length-1;i++) {
+			if(directionRobot == listDir[i]) {
+				if(i==listDir.length-1) {
+					if(dir == listDir[i-1]) {
+						this.robot.tournerRobotAngleDroit("gauche");
+						this.robot.setDirection(listDir[i-1]);
+					}else if(dir == listDir[0]) {
+						this.robot.tournerRobotAngleDroit("droite");
+						this.robot.setDirection(listDir[0]);
+					}else {this.robot.tournerRobotAngleDroit("droite");} // si le robot est a plus de deux case de la direction voulu, on tourne à droite
+				}else{
+					if(dir == listDir[i-1]) {
+						this.robot.tournerRobotAngleDroit("gauche");
+						this.robot.setDirection(listDir[i-1]);
+					}else if(dir == listDir[i+1]) {
+						this.robot.tournerRobotAngleDroit("droite");
+						this.robot.setDirection(listDir[i+1]);
+					}else {this.robot.tournerRobotAngleDroit("droite");} // si le robot est a plus de deux case de la direction voulu, on tourne à droite
+				}
+				break;
+			}
+		}
+		//if(dir != this.robot.getDirection()) {
+			
+		//}
 	}
 	
 	/**
