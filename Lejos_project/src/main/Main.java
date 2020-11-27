@@ -23,23 +23,21 @@ public class Main {
 		cerveau.rechercheChemin();
 		//while (!Button.DOWN.isDown()) {	}
 		while (!Button.DOWN.isDown()) {	
-			for(int i =0;i<7;i++) {
+			for(int i =0;i<2;i++) {
 				r2d2.avanceUneCase();
 				r2d2.stringColor();
 				
-				for(int j=0; j<5;j++) {
+				/*for(int j=0; j<5;j++) {
 					if(r2d2.isSameColor(Robot.getCouleur(j),r2d2.stringColor())) {
 						System.out.println(Robot.getCouleur(j));
 					}
 					
 
-				}
+				}*/
+				
 			}
-			/*r2d2.tournerRobotAngleDroit("gauche");
-			for(int i =0;i<5;i++) {
-				r2d2.avanceUneCase();
-
-			}*/
+			r2d2.tournerRobotAngleDroit("gauche");
+			
 		}
 	}
 

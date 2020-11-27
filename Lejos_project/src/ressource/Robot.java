@@ -133,7 +133,7 @@ public class Robot {
 		pilot.setAngularSpeed(30);
 			while (pilot.isMoving()) Thread.yield();
 			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
-			pilot.rotate(88);
+			pilot.rotate(85);
 			while (pilot.isMoving())Thread.yield();
 			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 		
