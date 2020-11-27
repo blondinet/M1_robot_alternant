@@ -150,11 +150,11 @@ public class Deplacement {
 					}else {this.robot.tournerRobotAngleDroit("droite");} // si le robot est a plus de deux case de la direction voulu, on tourne à droite
 			
 				}else if(i==0) {
-					if(dir == listDir[i-1]) {
+					if(dir == listDir[listDir.length-1]) {
 						this.robot.tournerRobotAngleDroit("gauche");
 						this.robot.setDirection(listDir[listDir.length-1]);
 						
-					}else if(dir == listDir[0]) {
+					}else if(dir == listDir[i+1]) {
 						this.robot.tournerRobotAngleDroit("droite");
 						this.robot.setDirection(listDir[i+1]);
 					}else {this.robot.tournerRobotAngleDroit("droite");} // si le robot est a plus de deux case de la direction voulu, on tourne à droite
