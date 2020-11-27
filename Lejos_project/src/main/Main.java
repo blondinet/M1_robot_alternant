@@ -35,11 +35,11 @@ public class Main {
 
 				}
 			}
-			r2d2.tournerRobotAngleDroit();
+			/*r2d2.tournerRobotAngleDroit("gauche");
 			for(int i =0;i<5;i++) {
 				r2d2.avanceUneCase();
 
-			}
+			}*/
 		}
 	}
 
