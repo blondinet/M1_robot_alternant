@@ -134,16 +134,32 @@ public class Deplacement {
 		int directionRobot = this.robot.getDirection();
 		
 		int[] listDir ={this.robot.HAUT, this.robot.DROITE, this.robot.BAS, this.robot.GAUCHE};
+		
 		for(int i =0;i<=listDir.length-1;i++) {
+			
 			if(directionRobot == listDir[i]) {
+				
 				if(i==listDir.length-1) {
 					if(dir == listDir[i-1]) {
 						this.robot.tournerRobotAngleDroit("gauche");
 						this.robot.setDirection(listDir[i-1]);
+						
 					}else if(dir == listDir[0]) {
 						this.robot.tournerRobotAngleDroit("droite");
 						this.robot.setDirection(listDir[0]);
 					}else {this.robot.tournerRobotAngleDroit("droite");} // si le robot est a plus de deux case de la direction voulu, on tourne à droite
+			
+				}else if(i==0) {
+					if(dir == listDir[i-1]) {
+						this.robot.tournerRobotAngleDroit("gauche");
+						this.robot.setDirection(listDir[listDir.length-1]);
+						
+					}else if(dir == listDir[0]) {
+						this.robot.tournerRobotAngleDroit("droite");
+						this.robot.setDirection(listDir[i+1]);
+					}else {this.robot.tournerRobotAngleDroit("droite");} // si le robot est a plus de deux case de la direction voulu, on tourne à droite
+			
+					
 				}else{
 					if(dir == listDir[i-1]) {
 						this.robot.tournerRobotAngleDroit("gauche");
