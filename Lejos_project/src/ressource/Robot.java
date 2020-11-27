@@ -34,6 +34,10 @@ public class Robot {
 	// fonctionnement du robot
 	private String[][] tableauCouleurInitial = new String [7][5] ;
 	;
+	public int DEVANT  = 8;
+	public int DERRIERE= 5;
+	public int DROITE  = 6;
+	public int GAUCHE  = 4;
 
 	private String[] tableauCorrespondanceColorInt = { "Rouge", "Bleu", "Vert", "Orange", "Blanc" };
 
@@ -45,6 +49,7 @@ public class Robot {
 	private EV3ColorSensor capteurCouleur;
 	private Position posCourante = new Position(0, 0);
 	private Position posGoal = new Position(4, 5);
+	private int direction = 8;
 	
 	/**
 	 * Constructeur du robot
@@ -276,5 +281,15 @@ public class Robot {
 	*/
 	public Position getCaseGoal(){
 		return posGoal;
+	}
+	
+
+
+	public int getDirection() {
+		return this.direction;
+	}
+	
+	public void setDirection(int dir) {
+		this.direction=dir;
 	}
 }
