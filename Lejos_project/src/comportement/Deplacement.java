@@ -20,8 +20,9 @@ public class Deplacement {
 	/**
 	 * Fonction qui cherche le chemin et le stock dans listPosCheminGoal
 	 * @Modification Xavier Jacob--Guizon
+	 * @return ArrayList le chemin 
 	 */
-	public void rechercheChemin() {
+	public ArrayList rechercheChemin() {
 		Position posCourante = this.robot.getCaseCourante();
 		Position goal = this.robot.getCaseGoal();
 		// On recherche le chemin en x (en largeur)
@@ -44,9 +45,7 @@ public class Deplacement {
 			posCourante.setPosY(posCourante.getPosY()+1);
 		}
 		
-		for(Position val : this.listPosCheminGoal) {
-			System.out.print(val);
-		}
+		return this.listPosCheminGoal;
 	}
 	
 	
@@ -72,8 +71,20 @@ public class Deplacement {
 	 * methode qui prend en parametre une liste et fait ce déplacer le robot par rapport aux position de la liste
 	 * @Modification Xavier Jacob--Guizon
 	 */
-	public void deplacementList() {
-		
+	public void deplacementList(ArrayList<Position> list) {
+		for(Position pos : list) {
+			if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
+				
+			}else if(this.robot.getCaseCourante().getPosX() > pos.getPosX()) {
+				
+			}
+			
+			if(this.robot.getCaseCourante().getPosY() < pos.getPosY()) {
+				
+			}else if(this.robot.getCaseCourante().getPosY() > pos.getPosY()) {
+				
+			}
+		}
 	}
 	
 	/**

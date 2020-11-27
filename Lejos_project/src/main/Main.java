@@ -1,7 +1,10 @@
 package main;
 
+import java.util.ArrayList;
+
 import comportement.Deplacement;
 import lejos.hardware.Button;
+import ressource.Position;
 import ressource.Robot;
 
 public class Main {
@@ -19,8 +22,9 @@ public class Main {
 		}
 		Robot r2d2 = new Robot ();
 		Deplacement cerveau = new Deplacement(r2d2);
-		System.out.println("testeuuuur");
-		cerveau.rechercheChemin();
+		ArrayList list = cerveau.rechercheChemin();
+		cerveau.deplacementList(list);
+		
 		//while (!Button.DOWN.isDown()) {	}
 		while (!Button.DOWN.isDown()) {	
 			for(int i =0;i<7;i++) {
