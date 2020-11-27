@@ -129,17 +129,24 @@ public class Robot {
 	
 	
 
-	public void tournerRobotAngleDroit() {
-		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(-60);
-		Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(60);
+	public void tournerRobotAngleDroit(String dir) {
+		int rouG=-60;
+		int rouD=60;
+		if(dir== "gauche") {
+			rouG=rouD;
+			rouD=-60;
+		}
+		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(rouG);
+		Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(rouD);
 		Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, 2);
 
 		MovePilot pilot = new MovePilot(chassis);
 		pilot.setLinearSpeed(30.);
 		pilot.setLinearSpeed(30.); 
+		pilot.setAngularSpeed(30);
 			while (pilot.isMoving()) Thread.yield();
 			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
-			pilot.rotate(90);
+			pilot.rotate(88);
 			while (pilot.isMoving())Thread.yield();
 			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 		
