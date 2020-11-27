@@ -1,12 +1,20 @@
 package ressource;
 
-//import java.util.HashMap;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.InputStream;
+import java.io.DataInputStream;
 
-import lejos.hardware.Button;
+import java.util.Random;
+
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.remote.nxt.BTConnection;
+import lejos.remote.nxt.BTConnector;
+import lejos.remote.nxt.NXTConnection;
 import lejos.robotics.Color;
 import lejos.robotics.chassis.Chassis;
 import lejos.robotics.chassis.Wheel;
@@ -32,10 +40,11 @@ public class Robot {
 	private NXTRegulatedMotor roueGauche;
 	private NXTRegulatedMotor roueDroite;
 
+	//SampleProvider sp; pour le rgb
+
 	private EV3ColorSensor capteurCouleur;
 	private Position posCourante = new Position(0, 0);
 	private Position posGoal = new Position(4, 5);
-
 	
 	/**
 	 * Constructeur du robot
@@ -48,7 +57,11 @@ public class Robot {
 		this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
 
 		initMapColorInitial();
+		// ouvrir tous les capteurs ?
+		this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
+		//this.sp = capteurCouleur.getRGBMode();  pour le rgb
 		//initColor();
+		
 	}
 
 	/**
@@ -109,9 +122,9 @@ public class Robot {
 		float[] angle = new float[] { 0.0f };
 
 		pilot.setLinearSpeed(30.);
+	    pilot.setLinearSpeed(30.); // unit per second
 		pilot.setLinearSpeed(30.); // unit per second
 		pilot.travel(120);
-
 	}
 	
 	
@@ -133,7 +146,7 @@ public class Robot {
 		pilot.setAngularSpeed(30);
 			while (pilot.isMoving()) Thread.yield();
 			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
-			pilot.rotate(88);
+			pilot.rotate(85);
 			while (pilot.isMoving())Thread.yield();
 			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 		
@@ -141,16 +154,31 @@ public class Robot {
 	
 	
 	public String stringColor() {
-		//float[] tab = new float[3];
+		//float[] tab = new float[3]; 
 		//sp.fetchSample(tab, 0); // RBG en float
 		int clr = this.capteurCouleur.getColorID();
 		return getCouleur(clr);
 	}
+	
+	public boolean isSameColor(String colorCase, String colorReturn) {
+		return colorCase == colorReturn;
+	}
+	
+	/**
+	 * Méthode pour obtenir une couleur aléatoire pour commencer le déplacement des robots
+	 * @return la couleur
+	 */
+	public String randomColorByRobot() {
+	    Random rand = new Random();
+	    int randomIndex = rand.nextInt(tableauCorrespondanceColorInt.length);
+        String randomElement = tableauCorrespondanceColorInt[randomIndex];
+        //System.out.println(randomElement);
+		return randomElement;
+	}
 
 	public static String getCouleur(int c) {
 		switch (c) {
-			case Color.BLUE:
-				
+			case Color.BLUE:				
 				return "Bleu";
 			case Color.GREEN:
 				return "Vert";
@@ -164,12 +192,37 @@ public class Robot {
 				return "Unknown";
 		}
 	}
-	public boolean isSameColor(String colorCase, String colorReturn) {
-		return colorCase == colorReturn;
-		
-	}
+	
+	/*// ceci ne fonctionnera jamais
+	public void bluetooth() {
+		String connected = "Connected";
+	    String waiting = "Waiting...";
+	    String closing = "Closing...";
 
+	    while (true) {
+	      LCD.drawString(waiting,0,0);
+	      NXTConnection connection = Bluetooth.getAddress(00:16:53:43:4E:26);
+	      LCD.clear();
+	      LCD.drawString(connected,0,0);
 
+	      DataInputStream dis = (DataInputStream) connection.openDataInputStream();
+	      DataOutputStream dos = (DataOutputStream) connection.openDataOutputStream();
+
+	      for(int i=0;i<100;i++) {
+	        String s = dis.read_string();
+	        LCD.drawString(s,0,0);
+	        dos.write_string(s);
+	      }
+	      ((BaseRegulatedMotor) dis).close();
+	      ((BaseRegulatedMotor) dos).close();
+
+	      LCD.clear();
+	      LCD.drawString(closing,0,0);
+
+	      connection.close();
+	      LCD.clear();
+	    }
+	}*/
 
 	/**
 	 * Getteur de la roue droite
