@@ -64,7 +64,6 @@ public class Robot {
 
 		initMapColorInitial();
 		// ouvrir tous les capteurs ?
-		this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
 		//this.sp = capteurCouleur.getRGBMode();  pour le rgb
 		//initColor();
 		
