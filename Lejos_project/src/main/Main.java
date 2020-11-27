@@ -26,7 +26,6 @@ public class Main {
 		ArrayList list = cerveau.rechercheChemin();
 		cerveau.deplacementList(list);
 		
-		while (!Button.DOWN.isDown()) {	}
 		while (!Button.DOWN.isDown()) {	
 			for(int i =0;i<2;i++) {
 				r2d2.avanceUneCase();

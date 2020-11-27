@@ -33,11 +33,11 @@ public class Robot {
 	//private HashMap<String, Color> mapCouleurCourante; // C'est la map des couleurs qu'on initialise au début du
 	// fonctionnement du robot
 	private String[][] tableauCouleurInitial = new String [7][5] ;
-	;
-	public int HAUT  = 8; //etre droit dans la longueur du plateau (le 7)
-	public int BAS= 5;
+	
+	public int DEVANT  = 8;
+	public int DERRIERE= 5;
 	public int DROITE  = 6;
-	public int GAUCHE  = 4; // etre vers le bas du tableau ( voir le tableau des couleurs);
+	public int GAUCHE  = 4;
 
 	private String[] tableauCorrespondanceColorInt = { "Rouge", "Bleu", "Vert", "Orange", "Blanc" };
 
@@ -173,13 +173,13 @@ public class Robot {
 	 * Méthode pour obtenir une couleur aléatoire pour commencer le déplacement des robots
 	 * @return la couleur
 	 */
-	public String randomColorByRobot() {
+/*	public String randomColorByRobot() {
 	    Random rand = new Random();
 	    int randomIndex = rand.nextInt(tableauCorrespondanceColorInt.length);
         String randomElement = tableauCorrespondanceColorInt[randomIndex];
         //System.out.println(randomElement);
 		return randomElement;
-	}
+	}*/
 
 	public static String getCouleur(int c) {
 		switch (c) {
