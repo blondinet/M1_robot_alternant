@@ -1,7 +1,10 @@
 package main;
 
+import java.io.IOException;
+
 import comportement.Deplacement;
 import lejos.hardware.Button;
+import ressource.Bluetooth;
 import ressource.Robot;
 
 public class Main {
@@ -14,9 +17,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Appuyez BAS pour lancer");
-		while (!Button.DOWN.isDown()) {
-			
-		}
+		while (!Button.DOWN.isDown()) {}
 		Robot r2d2 = new Robot ();
 		Deplacement cerveau = new Deplacement(r2d2);
 		System.out.println("testeuuuur");
@@ -38,7 +39,22 @@ public class Main {
 			}
 			r2d2.tournerRobotAngleDroit("gauche");
 			
+			/*r2d2.tournerRobotAngleDroit("gauche");
+			for(int i =0;i<5;i++) {
+				r2d2.avanceUneCase();
+ 			4e1a921ca35214be579a27e91ef4957081b15a12
+
+			}*/
 		}
+		
+		// TEST BLUETOOTH
+		try {
+			Bluetooth.connectBt();
+			Bluetooth.waitBt();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
