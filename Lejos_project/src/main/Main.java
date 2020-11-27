@@ -22,10 +22,14 @@ public class Main {
 		System.out.println("Appuyez BAS pour lancer");
 		while (!Button.DOWN.isDown()) {}
 		Robot r2d2 = new Robot ();
+		
 		Deplacement cerveau = new Deplacement(r2d2);
 		ArrayList list = cerveau.rechercheChemin();
+		while (!Button.DOWN.isDown()) {
+
 		cerveau.deplacementList(list);
-		
+		}
+		/*
 		while (!Button.DOWN.isDown()) {	
 			for(int i =0;i<2;i++) {
 				r2d2.avanceUneCase();
