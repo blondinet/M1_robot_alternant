@@ -54,4 +54,12 @@ public class Position {
 	public String toString() {
 		return "position en x : "+this.posX+" : position en y :"+posY;
 	}
+
+	public boolean estCase(Position pos) {
+		if(this.posX==pos.getPosX() && this.posY==pos.getPosY()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
