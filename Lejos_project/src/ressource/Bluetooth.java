@@ -15,7 +15,7 @@ public class Bluetooth {
 	//émetteur
 	public static void connectBt() throws IOException {
 		BTConnector bt = new BTConnector();
-		BTConnection btc= bt.connect("00:16:53:43:4E:26", NXTConnection.PACKET); // adresse MAC du robot que l'on veut connecter
+		BTConnection btc= bt.connect(Variables.AdMAC, NXTConnection.PACKET); // adresse MAC du robot que l'on veut connecter
 		
 		OutputStream os = btc.openOutputStream();
 		DataOutputStream dos = new DataOutputStream(os);
