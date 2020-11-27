@@ -33,7 +33,7 @@ public class Robot {
 	//private HashMap<String, Color> mapCouleurCourante; // C'est la map des couleurs qu'on initialise au début du
 	// fonctionnement du robot
 	private String[][] tableauCouleurInitial = new String [7][5] ;
-	;
+	
 	public int DEVANT  = 8;
 	public int DERRIERE= 5;
 	public int DROITE  = 6;
@@ -55,7 +55,8 @@ public class Robot {
 	 * Constructeur du robot
 	 * 
 	 */
-	public Robot() {
+	public Robot() {System.out.println("test");
+
 		System.out.println("yo");
 		this.roueGauche = Motor.B; // moteur B = roue de gauche
 		this.roueDroite = Motor.C; // moteur B = roue de droite
