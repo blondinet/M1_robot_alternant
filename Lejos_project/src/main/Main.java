@@ -19,10 +19,25 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Appuyez BAS pour lancer");
-		while (!Button.DOWN.isDown()) {}
-		Robot r2d2 = new Robot ();
+		//System.out.println("Appuyez BAS pour lancer");
+		//while (!Button.DOWN.isDown()) {}
 		
+		//while(!Button.RIGHT.isDown() || !Button.LEFT.isDown()) {}
+		//if(Button.LEFT.isDown()) {
+		Robot r2d2 = new Robot ();
+		r2d2.setEmetteur(true); // devient l'émetteur
+		Bluetooth.connectBt(r2d2, "BLEU");
+		//}else {
+		/*Robot r2 = new Robot ();		
+		Bluetooth.waitBt(r2);*/
+		//}
+		
+		// TEST BLUETOOTH
+		//
+		
+			
+		
+		/*Deplacement cerveau = new Deplacement(r2d2);
 		Deplacement cerveau = new Deplacement(r2d2);
 		//System.out.println(cerveau.rechercheChemin());
 		

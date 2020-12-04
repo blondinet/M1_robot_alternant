@@ -50,6 +50,7 @@ public class Robot {
 	private Position posCourante = new Position(0, 0);
 	private Position posGoal = new Position(4, 6);
 	private int direction = 8;
+	private boolean emetteur = false;
 	
 	/**
 	 * Constructeur du robot
@@ -292,5 +293,13 @@ public class Robot {
 	
 	public void setDirection(int dir) {
 		this.direction=dir;
+	}
+
+	public boolean isEmetteur() {
+		return emetteur;
+	}
+
+	public void setEmetteur(boolean emetteur) {
+		this.emetteur = emetteur;
 	}
 }
