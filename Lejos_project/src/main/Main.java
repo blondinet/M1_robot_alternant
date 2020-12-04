@@ -23,7 +23,9 @@ public class Main {
 		while (!Button.DOWN.isDown()) {}
 		Robot r2d2 = new Robot ();
 		
-		Deplacement cerveau = new Deplacement(r2d2);
+		//Deplacement cerveau = new Deplacement(r2d2);
+		//System.out.println(cerveau.rechercheChemin());
+		/*
 		ArrayList list = cerveau.rechercheChemin();
 		while (!Button.DOWN.isDown()) {
 
@@ -51,7 +53,7 @@ public class Main {
 				r2d2.avanceUneCase();
 
 			}
-		}
+		}*/
 		
 		// TEST BLUETOOTH
 		/*try {

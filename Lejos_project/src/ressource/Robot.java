@@ -125,9 +125,7 @@ public class Robot {
 
 		float[] angle = new float[] { 0.0f };
 
-		pilot.setLinearSpeed(30.);
-	    pilot.setLinearSpeed(30.); // unit per second
-		pilot.setLinearSpeed(30.); // unit per second
+		pilot.setLinearSpeed(40.); // unit per second
 		pilot.travel(120);
 	}
 	
@@ -145,12 +143,11 @@ public class Robot {
 		Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, 2);
 
 		MovePilot pilot = new MovePilot(chassis);
-		pilot.setLinearSpeed(30.);
-		pilot.setLinearSpeed(30.); 
-		pilot.setAngularSpeed(30);
+		pilot.setLinearSpeed(45.); 
+		pilot.setAngularSpeed(40);
 			while (pilot.isMoving()) Thread.yield();
 			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
-			pilot.rotate(85);
+			pilot.rotate(81);
 			while (pilot.isMoving())Thread.yield();
 			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 		
