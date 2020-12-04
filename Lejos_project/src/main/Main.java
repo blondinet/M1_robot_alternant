@@ -19,13 +19,13 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//System.out.println("Appuyez BAS pour lancer");
-		//while (!Button.DOWN.isDown()) {}
+	System.out.println("Appuyez BAS pour lancer");
+	while (!Button.DOWN.isDown()) {}
 		
 		//while(!Button.RIGHT.isDown() || !Button.LEFT.isDown()) {}
 		//if(Button.LEFT.isDown()) {
 		Robot r2d2 = new Robot ();
-		r2d2.setEmetteur(true); // devient l'émetteur
+		/*r2d2.setEmetteur(true); // devient l'émetteur
 		Bluetooth.connectBt(r2d2, "BLEU");
 		//}else {
 		/*Robot r2 = new Robot ();		
@@ -37,9 +37,7 @@ public class Main {
 		
 			
 		
-		/*Deplacement cerveau = new Deplacement(r2d2);
 		Deplacement cerveau = new Deplacement(r2d2);
-		System.out.println(cerveau.rechercheChemin());
 		
 		ArrayList list = cerveau.rechercheChemin();
 		while (!Button.DOWN.isDown()) {
