@@ -24,33 +24,34 @@ public class Deplacement {
 	 * @return ArrayList le chemin 
 	 */
 	public ArrayList rechercheChemin() {
+		ArrayList<Position> list = new ArrayList<Position>();
 		Position posCourante = new Position(this.robot.getCaseCourante().getPosX(),this.robot.getCaseCourante().getPosY());
 		Position goal = this.robot.getCaseGoal();
 		
 		
 		// On recherche le chemin en y (en longeur)
 		while(posCourante.getPosY() > goal.getPosY()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
+			list.add(new Position(posCourante));
 			posCourante.setPosY(posCourante.getPosY()-1);
 		}
 		while(posCourante.getPosY() < goal.getPosY()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
+			list.add(new Position(posCourante));
 			posCourante.setPosY(posCourante.getPosY()+1);
 		}
 		
 		// On recherche le chemin en x (en largeur)
 		while(posCourante.getPosX() > goal.getPosX()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
+			list.add(new Position(posCourante));
 			posCourante.setPosX(posCourante.getPosX()-1);
 			
 		}
 		while(posCourante.getPosX() < goal.getPosX()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
+			list.add(new Position(posCourante));
 			posCourante.setPosX(posCourante.getPosX()+1);
 			//System.out.print(posCourante);
 		}
 		
-		return this.listPosCheminGoal;
+		return list;
 	}
 	
 	
