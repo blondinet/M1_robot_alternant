@@ -56,10 +56,6 @@ public class Position {
 	}
 
 	public boolean estCase(Position pos) {
-		if(this.posX==pos.getPosX() && this.posY==pos.getPosY()) {
-			return true;
-		}else {
-			return false;
-		}
+		return this.posX==pos.getPosX() && this.posY==pos.getPosY();
 	}
 }
