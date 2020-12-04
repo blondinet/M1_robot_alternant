@@ -24,31 +24,35 @@ public class Deplacement {
 	 * @return ArrayList le chemin 
 	 */
 	public ArrayList rechercheChemin() {
+		ArrayList<Position> list = new ArrayList<Position>();
 		Position posCourante = new Position(this.robot.getCaseCourante().getPosX(),this.robot.getCaseCourante().getPosY());
 		Position goal = this.robot.getCaseGoal();
+		
+		
+		// On recherche le chemin en y (en longeur)
+		while(posCourante.getPosY() > goal.getPosY()) {
+			list.add(new Position(posCourante));
+			posCourante.setPosY(posCourante.getPosY()-1);
+		}
+		while(posCourante.getPosY() < goal.getPosY()) {
+			list.add(new Position(posCourante));
+			posCourante.setPosY(posCourante.getPosY()+1);
+		}
+		
 		// On recherche le chemin en x (en largeur)
 		while(posCourante.getPosX() > goal.getPosX()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
+			list.add(new Position(posCourante));
 			posCourante.setPosX(posCourante.getPosX()-1);
 			
 		}
 		while(posCourante.getPosX() < goal.getPosX()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
+			list.add(new Position(posCourante));
 			posCourante.setPosX(posCourante.getPosX()+1);
 			//System.out.print(posCourante);
 		}
+		list.add(goal);
 		
-		// On recherche le chemin en y (en longeur)
-		while(posCourante.getPosY() > goal.getPosY()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
-			posCourante.setPosY(posCourante.getPosY()-1);
-		}
-		while(posCourante.getPosY() < goal.getPosY()) {
-			this.listPosCheminGoal.add(new Position(posCourante));
-			posCourante.setPosY(posCourante.getPosY()+1);
-		}
-		
-		return this.listPosCheminGoal;
+		return list;
 	}
 	
 	
@@ -79,7 +83,7 @@ public class Deplacement {
 		for(Position pos : list) {
 			if(Button.DOWN.isDown()) {break;}
 			if(!this.robot.getCaseCourante().estCase(pos)) {
-				if(this.robot.getCaseCourante().getPosX() <= pos.getPosX()) {
+				if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
 					//tourner le robot pour la bonne position
 					//System.out.println("Choix droite "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.DROITE) {
@@ -93,7 +97,7 @@ public class Deplacement {
 					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosX()+1);
 					//System.out.println("droiteAvanceEffect");
 					
-				}else if(this.robot.getCaseCourante().getPosX() >= pos.getPosX()) {
+				}else if(this.robot.getCaseCourante().getPosX() > pos.getPosX()) {
 					//System.out.println("Choix Gauche "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.GAUCHE) {
 						this.tournerDir(this.robot.GAUCHE);
@@ -107,7 +111,7 @@ public class Deplacement {
 					//System.out.println("gaucheAvanceEffect");
 				}
 				
-				if(this.robot.getCaseCourante().getPosY() <= pos.getPosY()) {
+				else if(this.robot.getCaseCourante().getPosY() < pos.getPosY()) {
 					//System.out.println("Choix Haut "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.HAUT) {
 						this.tournerDir(this.robot.HAUT);
@@ -119,7 +123,9 @@ public class Deplacement {
 					
 					this.robot.getCaseCourante().setPosY(this.robot.getCaseCourante().getPosY()+1);
 					//System.out.println("HautAvanceEffect");
-				}else if(this.robot.getCaseCourante().getPosY() >= pos.getPosY()) {
+					
+					
+				}else if(this.robot.getCaseCourante().getPosY() > pos.getPosY()) {
 					//System.out.println("Choix Bas "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.BAS) {
 						this.tournerDir(this.robot.BAS);

@@ -19,8 +19,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	System.out.println("Appuyez BAS pour lancer");
-	while (!Button.DOWN.isDown()) {}
+		
+		System.out.println("Appuyez BAS pour lancer");
+		while (!Button.DOWN.isDown()) {}
 		
 		//while(!Button.RIGHT.isDown() || !Button.LEFT.isDown()) {}
 		//if(Button.LEFT.isDown()) {
@@ -34,8 +35,6 @@ public class Main {
 		
 		// TEST BLUETOOTH
 		//
-		
-			
 		
 		Deplacement cerveau = new Deplacement(r2d2);
 		
