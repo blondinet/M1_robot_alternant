@@ -2,6 +2,7 @@ package comportement;
 
 import java.util.ArrayList;
 
+import lejos.hardware.Button;
 import ressource.*;
 
 public class Deplacement {
@@ -74,49 +75,50 @@ public class Deplacement {
 	public void deplacementList(ArrayList<Position> list) {
 		
 		for(Position pos : list) {
+			if(Button.DOWN.isDown()) {break;}
 			if(!this.robot.getCaseCourante().estCase(pos)) {
 				if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
 					//tourner le robot pour la bonne position
-					System.out.println("Choix droite "+this.robot.getDirection());
+					//System.out.println("Choix droite "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.DROITE) {
 						this.tournerDir(this.robot.DROITE);
 					}
-					System.out.println("droite");
+					//System.out.println("droite");
 
 					this.robot.avanceUneCase();
-					System.out.println("droiteAvance");
+					//System.out.println("droiteAvance");
 					
 					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosX()+1);
-					System.out.println("droiteAvanceEffect");
+					//System.out.println("droiteAvanceEffect");
 					
 				}else if(this.robot.getCaseCourante().getPosX() > pos.getPosX()) {
-					System.out.println("Choix Gauche "+this.robot.getDirection());
+					//System.out.println("Choix Gauche "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.GAUCHE) {
 						this.tournerDir(this.robot.GAUCHE);
 					}
-					System.out.println("gauche");
+					//System.out.println("gauche");
 					
 					this.robot.avanceUneCase();
-					System.out.println("gaucheAvance");
+					//System.out.println("gaucheAvance");
 					
 					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosX()-1);
-					System.out.println("gaucheAvanceEffect");
+					//System.out.println("gaucheAvanceEffect");
 				}
 				
 				if(this.robot.getCaseCourante().getPosY() < pos.getPosY()) {
-					System.out.println("Choix Haut "+this.robot.getDirection());
+					//System.out.println("Choix Haut "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.HAUT) {
 						this.tournerDir(this.robot.HAUT);
 					}
-					System.out.println("Haut");
+					//System.out.println("Haut");
 					
 					this.robot.avanceUneCase();
-					System.out.println("HautAvance");
+					//System.out.println("HautAvance");
 					
 					this.robot.getCaseCourante().setPosY(this.robot.getCaseCourante().getPosY()+1);
-					System.out.println("HautAvanceEffect");
+					//System.out.println("HautAvanceEffect");
 				}else if(this.robot.getCaseCourante().getPosY() > pos.getPosY()) {
-					System.out.println("Choix Bas "+this.robot.getDirection());
+					//System.out.println("Choix Bas "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.BAS) {
 						this.tournerDir(this.robot.BAS);
 					}
@@ -124,6 +126,9 @@ public class Deplacement {
 					this.robot.getCaseCourante().setPosY(this.robot.getCaseCourante().getPosY()-1);
 				}
 				
+			}
+			if(Button.DOWN.isDown()) {
+				break;
 			}
 		}
 	}
