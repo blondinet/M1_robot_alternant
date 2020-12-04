@@ -279,6 +279,15 @@ public class Robot {
 	}
 
 	/**
+	* Fonction qui permet de modifier la case courante du robot
+	* 
+	* @Modification Xavier Jacob--Guizon
+	*/
+	public void setCaseCourante(Position c){
+		this.posCourante=c;
+	}
+	
+	/**
 	* Fonction qui renvoie la case Objectif du robot
 	* 
 	* @Modification Xavier Jacob--Guizon

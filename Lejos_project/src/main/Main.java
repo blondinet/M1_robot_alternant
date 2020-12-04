@@ -25,6 +25,12 @@ public class Main {
 		//while(!Button.RIGHT.isDown() || !Button.LEFT.isDown()) {}
 		//if(Button.LEFT.isDown()) {
 		Robot r2d2 = new Robot ();
+		//r2d2.setDirection(dir);
+		//r2d2.setCaseCourante(c);
+		r2d2.setCaseGoal(new Position(2,2));
+		r2d2.deplacementRobotToGoal();
+		
+		
 		/*r2d2.setEmetteur(true); // devient l'émetteur
 		Bluetooth.connectBt(r2d2, "BLEU");
 		//}else {
