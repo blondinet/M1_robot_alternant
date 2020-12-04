@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.OutputStream;
 
 import lejos.remote.nxt.BTConnection;
@@ -14,7 +13,7 @@ import lejos.remote.nxt.NXTConnection;
 public class Bluetooth {
 
 	//émetteur
-	public static void connectBt(Robot r, String str, String adMac) {	
+	public static void connectBt(Robot r, Position str, String adMac) {	
 		if (r.isEmetteur()) {
 			BTConnector bt = new BTConnector();
 			BTConnection btc= bt.connect(adMac, NXTConnection.PACKET); // adresse MAC du robot que l'on veut connecter
@@ -24,7 +23,7 @@ public class Bluetooth {
 			
 			try {
 				// Convert data to byte
-				byte[] data = str.getBytes("UTF-8");
+				byte[] data = str.toString().getBytes("UTF-8");
 				dos.writeInt(data.length);
 				dos.write(data);
 				
@@ -41,24 +40,26 @@ public class Bluetooth {
 	public static void waitBt(Robot r) {
 		if (!r.isEmetteur()) {
 			BTConnector bt= new BTConnector();
-			System.out.print("En attente");
+			System.out.print("En attente...");
 			NXTConnection btc= bt.waitForConnection(100000, NXTConnection.PACKET);
 			
+			InputStream is= btc.openInputStream();
+			DataInputStream dis = new DataInputStream(is);
 			try {			
-				InputStream is= btc.openInputStream();
-				ObjectInputStream dis = new ObjectInputStream(is);
-				
 				int length=dis.readInt();
 				byte[] data = new byte[length];
 				dis.readFully(data);
 				String str = new String(data,"UTF-8");
 				
 				System.out.print(str);
-				//Thread.sleep(30000);
+				Thread.sleep(5000);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
 		}
 		r.setEmetteur(!r.isEmetteur());
 	}

@@ -25,7 +25,7 @@ public class MainRecepteur {
 		Bluetooth.waitBt(r2);
 		
 
-		Bluetooth.connectBt(r2, "Rouge", Variables.Maregaery3);
+		Bluetooth.connectBt(r2, new Position(3, 3), Variables.Maregaery3);
 		
 		/*Deplacement cerveau = new Deplacement(r2d2);
 		Deplacement cerveau = new Deplacement(r2d2);
