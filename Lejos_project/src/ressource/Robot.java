@@ -60,6 +60,7 @@ public class Robot {
 	 */
 	public Robot() {
 		System.out.println("Robot init");
+		cerveau = new Deplacement(this);
 		this.roueGauche = Motor.B; // moteur B = roue de gauche
 		this.roueDroite = Motor.C; // moteur B = roue de droite
 		//this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
@@ -307,7 +308,6 @@ public class Robot {
 	
 	
 	public void deplacementRobotToGoal() {
-		cerveau = new Deplacement(this);
 		//System.out.println(cerveau.rechercheChemin());
 		ArrayList list = cerveau.rechercheChemin();
 		cerveau.deplacementList(list);
