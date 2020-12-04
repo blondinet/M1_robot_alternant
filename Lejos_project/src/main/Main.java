@@ -35,14 +35,7 @@ public class Main {
 		// TEST BLUETOOTH
 		//
 		
-			
-		
-		//Deplacement cerveau = new Deplacement(r2d2);
-		Deplacement cerveau = new Deplacement(r2d2);
-		//System.out.println(cerveau.rechercheChemin());
-		
-		ArrayList list = cerveau.rechercheChemin();
-		cerveau.deplacementList(list);
+
 		
 		/*
 		while (!Button.DOWN.isDown()) {	

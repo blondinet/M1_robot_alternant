@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.DataInputStream;
-
+import java.util.ArrayList;
 import java.util.Random;
 
+import comportement.Deplacement;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.SensorPort;
@@ -33,12 +34,13 @@ public class Robot {
 	//private HashMap<String, Color> mapCouleurCourante; // C'est la map des couleurs qu'on initialise au début du
 	// fonctionnement du robot
 	private String[][] tableauCouleurInitial = new String [7][5] ;
-	;
+	
 	public int HAUT  = 8; //etre droit dans la longueur du plateau (le 7)
 	public int BAS= 5;
 	public int DROITE  = 6;
 	public int GAUCHE  = 4; // etre vers le bas du tableau ( voir le tableau des couleurs);
 
+	private Deplacement cerveau;
 	private String[] tableauCorrespondanceColorInt = { "Rouge", "Bleu", "Vert", "Orange", "Blanc" };
 
 	private NXTRegulatedMotor roueGauche;
@@ -285,7 +287,22 @@ public class Robot {
 		return posGoal;
 	}
 	
-
+	/**
+	* Fonction qui permet de changer la  la case Objectif du robot
+	* 
+	* @Modification Xavier Jacob--Guizon
+	*/
+	public void setCaseGoal(Position g){
+		this.posGoal=g;
+	}
+	
+	
+	public void deplacementRobotToGoal() {
+		cerveau = new Deplacement(this);
+		//System.out.println(cerveau.rechercheChemin());
+		ArrayList list = cerveau.rechercheChemin();
+		cerveau.deplacementList(list);
+	}
 
 	public int getDirection() {
 		return this.direction;
