@@ -2,6 +2,7 @@ package main;
 
 import ressource.Position;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,8 +10,9 @@ import comportement.Deplacement;
 import lejos.hardware.Button;
 import ressource.Bluetooth;
 import ressource.Robot;
+import ressource.Variables;
 
-public class Main {
+public class MainRecepteur {
 
 	/**
 	 * Fonction qui gère le comportement de notre robot
@@ -19,23 +21,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//System.out.println("Appuyez BAS pour lancer");
-		//while (!Button.DOWN.isDown()) {}
+		Robot r2 = new Robot ();		
+		Bluetooth.waitBt(r2);
 		
-		//while(!Button.RIGHT.isDown() || !Button.LEFT.isDown()) {}
-		//if(Button.LEFT.isDown()) {
-		Robot r2d2 = new Robot ();
-		r2d2.setEmetteur(true); // devient l'émetteur
-		Bluetooth.connectBt(r2d2, "BLEU");
-		//}else {
-		/*Robot r2 = new Robot ();		
-		Bluetooth.waitBt(r2);*/
-		//}
-		
-		// TEST BLUETOOTH
-		//
-		
-			
+
+		Bluetooth.connectBt(r2, "Rouge", Variables.Maregaery3);
 		
 		/*Deplacement cerveau = new Deplacement(r2d2);
 		Deplacement cerveau = new Deplacement(r2d2);
