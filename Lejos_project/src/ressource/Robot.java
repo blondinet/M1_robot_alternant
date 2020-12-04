@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.DataInputStream;
-
+import java.util.ArrayList;
 import java.util.Random;
 
+import comportement.Deplacement;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.SensorPort;
@@ -33,12 +34,13 @@ public class Robot {
 	//private HashMap<String, Color> mapCouleurCourante; // C'est la map des couleurs qu'on initialise au début du
 	// fonctionnement du robot
 	private String[][] tableauCouleurInitial = new String [7][5] ;
-	;
+	
 	public int HAUT  = 8; //etre droit dans la longueur du plateau (le 7)
 	public int BAS= 5;
 	public int DROITE  = 6;
 	public int GAUCHE  = 4; // etre vers le bas du tableau ( voir le tableau des couleurs);
 
+	private Deplacement cerveau;
 	private String[] tableauCorrespondanceColorInt = { "Rouge", "Bleu", "Vert", "Orange", "Blanc" };
 
 	private NXTRegulatedMotor roueGauche;
@@ -58,6 +60,7 @@ public class Robot {
 	 */
 	public Robot() {
 		System.out.println("Robot init");
+		cerveau = new Deplacement(this);
 		this.roueGauche = Motor.B; // moteur B = roue de gauche
 		this.roueDroite = Motor.C; // moteur B = roue de droite
 		//this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
@@ -136,11 +139,14 @@ public class Robot {
 	
 
 	public void tournerRobotAngleDroit(String dir) {
-		int rouG=-60;
-		int rouD=60;
+		int rouG;
+		int rouD;
 		if(dir== "gauche") {
-			rouG=rouD;
-			rouD=-60;
+			rouD=120;
+			rouG=0;
+		}else {
+			rouD=0;
+			rouG=120;
 		}
 		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(rouG);
 		Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(rouD);
@@ -277,6 +283,15 @@ public class Robot {
 	}
 
 	/**
+	* Fonction qui permet de modifier la case courante du robot
+	* 
+	* @Modification Xavier Jacob--Guizon
+	*/
+	public void setCaseCourante(Position c){
+		this.posCourante=c;
+	}
+	
+	/**
 	* Fonction qui renvoie la case Objectif du robot
 	* 
 	* @Modification Xavier Jacob--Guizon
@@ -285,7 +300,21 @@ public class Robot {
 		return posGoal;
 	}
 	
-
+	/**
+	* Fonction qui permet de changer la  la case Objectif du robot
+	* 
+	* @Modification Xavier Jacob--Guizon
+	*/
+	public void setCaseGoal(Position g){
+		this.posGoal=g;
+	}
+	
+	
+	public void deplacementRobotToGoal() {
+		//System.out.println(cerveau.rechercheChemin());
+		ArrayList list = cerveau.rechercheChemin();
+		cerveau.deplacementList(list);
+	}
 
 	public int getDirection() {
 		return this.direction;
