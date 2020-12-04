@@ -48,7 +48,7 @@ public class Robot {
 
 	private EV3ColorSensor capteurCouleur;
 	private Position posCourante = new Position(0, 0);
-	private Position posGoal = new Position(4, 5);
+	private Position posGoal = new Position(4, 6);
 	private int direction = 8;
 	
 	/**
@@ -58,8 +58,9 @@ public class Robot {
 	public Robot() {
 		System.out.println("yo");
 		this.roueGauche = Motor.B; // moteur B = roue de gauche
-		this.roueDroite = Motor.C; // moteur C = roue de droite
-		this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
+		this.roueDroite = Motor.C; // moteur B = roue de droite
+		//this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);
+
 
 		initMapColorInitial();
 		// ouvrir tous les capteurs ?
@@ -125,32 +126,33 @@ public class Robot {
 
 		float[] angle = new float[] { 0.0f };
 
-		pilot.setLinearSpeed(30.);
-	    pilot.setLinearSpeed(30.); // unit per second
-		pilot.setLinearSpeed(30.); // unit per second
+		pilot.setLinearSpeed(55.); // unit per second
+		
 		pilot.travel(120);
+		
 	}
 	
 	
 
 	public void tournerRobotAngleDroit(String dir) {
 		int rouG=-60;
-		int rouD=60;
+		int rouD=120;
 		if(dir== "gauche") {
 			rouG=rouD;
-			rouD=-60;
+			rouD=-120;
 		}
-		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(rouG);
+		Wheel wheel1 = WheeledChassis.modelWheel(this.roueGauche, 56).offset(0);
 		Wheel wheel2 = WheeledChassis.modelWheel(this.roueDroite, 56).offset(rouD);
 		Chassis chassis = new WheeledChassis(new Wheel[] { wheel1, wheel2 }, 2);
 
 		MovePilot pilot = new MovePilot(chassis);
-		pilot.setLinearSpeed(30.);
-		pilot.setLinearSpeed(30.); 
-		pilot.setAngularSpeed(30);
+
+		pilot.setAngularSpeed(50);
+		
 			while (pilot.isMoving()) Thread.yield();
 			System.out.println("Distance:" +pilot.getMovement().getDistanceTraveled());
-			pilot.rotate(85);
+			pilot.rotate(86);
+			//System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 			while (pilot.isMoving())Thread.yield();
 			System.out.println("Angle: "+pilot.getMovement().getAngleTurned());
 		

@@ -75,6 +75,7 @@ public class Deplacement {
 	public void deplacementList(ArrayList<Position> list) {
 		
 		for(Position pos : list) {
+			if(Button.DOWN.isDown()) {break;}
 			if(!this.robot.getCaseCourante().estCase(pos)) {
 				if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
 					//tourner le robot pour la bonne position

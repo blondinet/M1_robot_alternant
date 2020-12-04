@@ -24,6 +24,8 @@ public class Main {
 		Robot r2d2 = new Robot ();
 		
 		Deplacement cerveau = new Deplacement(r2d2);
+		System.out.println(cerveau.rechercheChemin());
+		
 		ArrayList list = cerveau.rechercheChemin();
 		while (!Button.DOWN.isDown()) {
 
@@ -44,14 +46,15 @@ public class Main {
 				}
 				
 			}
-			r2d2.tournerRobotAngleDroit("gauche");
+			/*
+			 r2d2.tournerRobotAngleDroit("gauche");
 			
 			r2d2.tournerRobotAngleDroit("gauche");
-			for(int i =0;i<5;i++) {
+			/*for(int i =0;i<5;i++) {
 				r2d2.avanceUneCase();
 
 			}
-		}
+		}*/
 		
 		// TEST BLUETOOTH
 		/*try {
