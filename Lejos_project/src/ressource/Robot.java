@@ -56,7 +56,7 @@ public class Robot {
 	 * 
 	 */
 	public Robot() {
-		System.out.println("yo");
+		System.out.println("Robot init");
 		this.roueGauche = Motor.B; // moteur B = roue de gauche
 		this.roueDroite = Motor.C; // moteur B = roue de droite
 		//this.capteurCouleur = new EV3ColorSensor(SensorPort.S3);

@@ -16,6 +16,16 @@ public class Position {
 	}
 	
 	/**
+	 * Constructeur de la position à partir d'une autre position
+	 * @Modification Xavier Jacob--Guizon
+	 * @param p Position
+	 */
+	public Position(Position p) {
+		this.posX=p.getPosX();
+		this.posY=p.getPosY();
+	}
+	
+	/**
 	 * Getteur de la position X
 	 * @return int
 	 */
@@ -52,7 +62,7 @@ public class Position {
 	 * @Modification Xavier Jacob--Guizon
 	 */
 	public String toString() {
-		return "position en x : "+this.posX+" : position en y :"+posY;
+		return "["+this.posX+" : "+this.posY+"]";
 	}
 
 	public boolean estCase(Position pos) {

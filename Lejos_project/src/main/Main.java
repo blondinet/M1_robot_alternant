@@ -24,13 +24,11 @@ public class Main {
 		Robot r2d2 = new Robot ();
 		
 		Deplacement cerveau = new Deplacement(r2d2);
-		System.out.println(cerveau.rechercheChemin());
+		//System.out.println(cerveau.rechercheChemin());
 		
 		ArrayList list = cerveau.rechercheChemin();
-		while (!Button.DOWN.isDown()) {
-
 		cerveau.deplacementList(list);
-		}
+		
 		/*
 		while (!Button.DOWN.isDown()) {	
 			for(int i =0;i<2;i++) {
