@@ -50,6 +50,7 @@ public class Deplacement {
 			posCourante.setPosX(posCourante.getPosX()+1);
 			//System.out.print(posCourante);
 		}
+		list.add(goal);
 		
 		return list;
 	}
