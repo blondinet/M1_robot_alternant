@@ -77,7 +77,7 @@ public class Deplacement {
 			if(!this.robot.getCaseCourante().estCase(pos)) {
 				if(this.robot.getCaseCourante().getPosX() < pos.getPosX()) {
 					//tourner le robot pour la bonne position
-					System.out.println("Choix droite");
+					System.out.println("Choix droite "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.DROITE) {
 						this.tournerDir(this.robot.DROITE);
 					}
@@ -90,7 +90,7 @@ public class Deplacement {
 					System.out.println("droiteAvanceEffect");
 					
 				}else if(this.robot.getCaseCourante().getPosX() > pos.getPosX()) {
-					System.out.println("Choix Gauche");
+					System.out.println("Choix Gauche "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.GAUCHE) {
 						this.tournerDir(this.robot.GAUCHE);
 					}
@@ -104,7 +104,7 @@ public class Deplacement {
 				}
 				
 				if(this.robot.getCaseCourante().getPosY() < pos.getPosY()) {
-					System.out.println("Choix Haut");
+					System.out.println("Choix Haut "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.HAUT) {
 						this.tournerDir(this.robot.HAUT);
 					}
@@ -113,14 +113,15 @@ public class Deplacement {
 					this.robot.avanceUneCase();
 					System.out.println("HautAvance");
 					
-					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosY()-1);
+					this.robot.getCaseCourante().setPosY(this.robot.getCaseCourante().getPosY()+1);
 					System.out.println("HautAvanceEffect");
 				}else if(this.robot.getCaseCourante().getPosY() > pos.getPosY()) {
+					System.out.println("Choix Bas "+this.robot.getDirection());
 					while(this.robot.getDirection()!=this.robot.BAS) {
 						this.tournerDir(this.robot.BAS);
 					}
 					this.robot.avanceUneCase();
-					this.robot.getCaseCourante().setPosX(this.robot.getCaseCourante().getPosY()+1);
+					this.robot.getCaseCourante().setPosY(this.robot.getCaseCourante().getPosY()-1);
 				}
 				
 			}
