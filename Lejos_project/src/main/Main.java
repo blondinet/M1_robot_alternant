@@ -26,9 +26,9 @@ public class Main {
 		//while(!Button.RIGHT.isDown() || !Button.LEFT.isDown()) {}
 		//if(Button.LEFT.isDown()) {
 		Robot r2d2 = new Robot ();
-		//r2d2.setDirection(dir);
-		//r2d2.setCaseCourante(c);
-		r2d2.setCaseGoal(new Position(2,2));
+		r2d2.setDirection(8);
+		r2d2.setCaseCourante(new Position(0,0));
+		r2d2.setCaseGoal(new Position(4, 6));
 		r2d2.deplacementRobotToGoal();
 		
 		
