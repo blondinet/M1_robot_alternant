@@ -55,9 +55,28 @@ public class Robot {
 	private boolean emetteur = false;
 	
 	/**
-	 * Constructeur du robot
-	 * 
-	 */
+     * Constructeur Robot.
+     * <p>
+     * A la construction d'un objet Robot, on initialise la position courante de celui-ci,
+     * la position où il désire aller,
+     * Un environnement graphique représenté par model,
+     * la map qui possède les couleurs de chaque case de l'environnement.
+     * 
+     * </p>
+     * 
+     * @param pos1
+     *            La position courante.
+     * @param pos2
+     *            La position goal.
+     * @param m
+     *               Le model de la map
+     * 
+     * @see Robot#posCourante
+     * @see Robot#posGoal
+     * @see Robot#model
+     * @see Robot#initMapColorInitial()
+     * @see Robot#cerveau
+     */
 	public Robot() {
 		System.out.println("Robot init");
 		cerveau = new Deplacement(this);

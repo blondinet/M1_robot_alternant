@@ -76,6 +76,8 @@ public class Deplacement {
 	
 	/**
 	 * methode qui prend en parametre une liste et fait ce déplacer le robot par rapport aux position de la liste
+	 * 
+	 * @param list : liste des deplacements à faire
 	 * @Modification Xavier Jacob--Guizon
 	 */
 	public void deplacementList(ArrayList<Position> list) {
@@ -141,6 +143,8 @@ public class Deplacement {
 	
 	/**
 	 * méthode qui fait tourner le robot jusqu'a ce qu'il soit dans la bonne direction
+	 * 
+	 * @param dir : direction que doit prendre le robot
 	 */
 	public void tournerDir(int dir) {
 		int directionRobot = this.robot.getDirection();

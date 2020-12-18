@@ -12,7 +12,13 @@ import lejos.remote.nxt.NXTConnection;
 
 public class Bluetooth {
 
-	//émetteur
+	/** émetteur
+	 * Fonction qui gère la connexion du bluetooth vers une adresse MAC
+	 * 
+	 * @param r : celui qui ce connecte
+	 * @param str : la position du robot
+	 * @param adMac : adresse MAC du second robot à connecter
+	 */
 	public static void connectBt(Robot r, Position str, String adMac) {	
 		if (r.isEmetteur()) {
 			BTConnector bt = new BTConnector();
@@ -36,7 +42,12 @@ public class Bluetooth {
 		}
 	}
 	
-	//récepteur
+	/** récepteur
+	 * Fonction qui gère la connexion du bluetooth vers une adresse MAC
+	 * 
+	 * 
+	 * @param r : celui qui attend la connxion (second robot)
+	 */
 	public static void waitBt(Robot r) {
 		if (!r.isEmetteur()) {
 			BTConnector bt= new BTConnector();
@@ -64,6 +75,12 @@ public class Bluetooth {
 		r.setEmetteur(!r.isEmetteur());
 	}
 	
+	/** 
+	 * Protoype d'un système pour l'envoie de données
+	 * 
+	 * @param dos : stream pour envoyer les données
+	 * @param str : position à atteindre
+	 */
 	public static void emetteur(DataOutputStream dos, String str) {
 		try {
 			// Convert data to byte
@@ -78,6 +95,11 @@ public class Bluetooth {
 		} // écrit une valeur intdans le flux, 2 c'est aléatoire
 	}
 	
+	/** 
+	 * Protoype d'un système pour l'envoie de données
+	 * 
+	 * @param dis : stream pour recevoir les donnéesss
+	 */
 	public static void recepteur(DataInputStream dis) {
 		try {			
 			int length=dis.readInt();

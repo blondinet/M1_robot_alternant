@@ -15,9 +15,8 @@ import ressource.Variables;
 public class MainRecepteur {
 
 	/**
-	 * Fonction qui gère le comportement de notre robot
+	 * main pour le robot qui reçoit la première information 
 	 * 
-	 * @Modification Xavier
 	 * @param args
 	 */
 	public static void main(String[] args) {
